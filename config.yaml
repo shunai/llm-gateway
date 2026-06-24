@@ -1,0 +1,47 @@
+gateway:
+  api_keys:
+    - key: "sk-test-free-llm"
+      name: "测试"
+      description: "测试免费模型"
+
+  providers:
+    - name: "xxx"
+      base_url: "https://xxx.ai/api/v1"
+      api_key: "sk-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+      models:
+        "nemotron-3-ultra-550b-a55b":
+          real_name: "nvidia/nemotron-3-ultra-550b-a55b:free"
+          daily_quota_tokens: 100000000
+          monthly_quota_tokens: 300000000
+          fallback_models: []
+        "qwen3-coder":
+          real_name: "qwen/qwen3-coder:free"
+          daily_quota_tokens: 100000000
+          monthly_quota_tokens: 300000000
+          fallback_models: []
+    - name: "xiaomi"
+      base_url: "https://token-plan-cn.xiaomimimo.com/v1"
+      api_key: "tp-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+      models:
+        "mimo-v2.5-pro":
+          real_name: "mimo-v2.5-pro"
+          daily_quota_tokens: 1000000
+          monthly_quota_tokens: 30000000
+          fallback_models: ["mimo-v2.5"]
+        "mimo-v2.5":
+          real_name: "mimo-v2.5"
+          daily_quota_tokens: 2000000
+          monthly_quota_tokens: 0
+          fallback_models: []
+
+  reasoning:
+    enabled: true
+    parameter: "reasoning_effort"
+    mapping:
+      "on": "high"
+      "auto": "medium"
+      "off": "low"
+
+  stats_file: "./token_stats.json"
+  quota_file: "./quota_stats.json"
+  quota_threshold: 0.95
